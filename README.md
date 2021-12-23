@@ -1,6 +1,19 @@
 # kind-crun-wasm
 This repository shows how to run WASM on [KinD](https://github.com/kubernetes-sigs/kind/). It is build on the awesome work of https://github.com/second-state/wasmedge-containers-examples.
 
+## Quickstart
+To get started just run:
+```bash
+# Create a "WASM in KinD" Cluster
+kind create cluster --image ghcr.io/liquid-reply/kind-crun-wasm:main
+```
+To test the WASM capabilities of your cluster you can start the example:
+```bash
+# Run the example
+kubectl run -it --rm --restart=Never wasi-demo --image=hydai/wasm-wasi-example:with-wasm-annotation --annotations="module.wasm.image/variant=compat" /wasi_example_main.wasm 50000000
+```
+To create your own containers you can start here: https://wasmedge.org/book/en/kubernetes/demo.html
+
 ## Approach
 Upstream Kind uses Containerd and runc to run Containers. However crun has built in support to run wasm workloads. Therefore this Repository patches the original Kind node image and replaces [runc](https://github.com/opencontainers/runc) with [crun](https://github.com/containers/crun).
 ```
