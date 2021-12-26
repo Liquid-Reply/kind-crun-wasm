@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wasm-echo-deployment
+  labels:
+    app: wasm-echo
+spec:
+  selector:
+    matchLabels:
+      app: wasm-echo
+  template:
+    metadata:
+      labels:
+        app: wasm-echo
+    spec:
+      containers:
+      - name: wasm-echo
+        image: avengermojo/http_server:with-wasm-annotation
+        command: [ "/http_server.wasm" ]
+        env:
+        - name: run.oci.handler
+          value: wasm
+        ports:
+        - containerPort: 1234
+          protocol: TCP
+        livenessProbe:
+          tcpSocket:
+            port: 1234
+          initialDelaySeconds: 3
+          periodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wasm-echo-service
+spec:
+  selector:
+    app: wasm-echo
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 1234
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: request-deployment
+  labels:
+    app: request
+spec:
+  selector:
+    matchLabels:
+      app: request
+  template:
+    metadata:
+      labels:
+        app: request
+    spec:
+      containers:
+      - name: request
+        image: curlimages/curl
+        command: [sh, -c]
+        args: 
+        - watch -n 0.5 curl wasm-echo-service

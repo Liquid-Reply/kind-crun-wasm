@@ -5,7 +5,7 @@ This repository shows how to run WASM on [KinD](https://github.com/kubernetes-si
 To get started just run:
 ```bash
 # Create a "WASM in KinD" Cluster
-kind create cluster --image ghcr.io/liquid-reply/kind-crun-wasm:main
+kind create cluster --image ghcr.io/liquid-reply/kind-crun-wasm:v1.23.0
 ```
 To test the WASM capabilities of your cluster you can start the example:
 ```bash
@@ -27,16 +27,16 @@ kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
-  image: ghcr.io/liquid-reply/kind-crun-wasm:main
+  image: ghcr.io/liquid-reply/kind-crun-wasm:v1.23.0
 - role: worker
-  image: ghcr.io/liquid-reply/kind-crun-wasm:main
+  image: ghcr.io/liquid-reply/kind-crun-wasm:v1.23.0
 ```
 Start the cluster:
 ```bash
 kind create cluster --config=cluster.yaml
 
     Creating cluster "kind" ...
-    ✓ Ensuring node image (ghcr.io/liquid-reply/kind-crun-wasm:main) 🖼 
+    ✓ Ensuring node image (ghcr.io/liquid-reply/kind-crun-wasm:v1.23.0) 🖼 
     ✓ Preparing nodes 📦 📦  
     ✓ Writing configuration 📜 
     ✓ Starting control-plane 🕹️ 
