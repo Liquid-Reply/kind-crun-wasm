@@ -3,7 +3,7 @@ WORKDIR /data
 RUN DEBIAN_FRONTEND=noninteractive apt update \
     && DEBIAN_FRONTEND=noninteractive apt install -y curl make git gcc build-essential pkgconf libtool libsystemd-dev libprotobuf-c-dev libcap-dev libseccomp-dev libyajl-dev go-md2man libtool autoconf python3 automake \
     && curl https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -p /usr/local \
-    && git clone --single-branch --branch feat/handler_per_container https://github.com/liquid-reply/crun \
+    && git clone --single-branch --branch main https://github.com/containers/crun.git \
     && cd crun \
     && ./autogen.sh \
     && ./configure --with-wasmedge --enable-embedded-yajl\
