@@ -1,9 +1,8 @@
 # Run WebAssembly in KinD with linkerd servicemesh
-> ⚠️ WARNING: This example uses the experimental KinD node image
 
 ```bash
 # Set up KinD cluster with WebAssembly support
-kind create cluster --image ghcr.io/liquid-reply/kind-crun-wasm:experimental
+kind create cluster --image ghcr.io/liquid-reply/kind-crun-wasm:v1.23.4
 ```
 
 ## Install Linkerd

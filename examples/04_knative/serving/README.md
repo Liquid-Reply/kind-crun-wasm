@@ -1,13 +1,11 @@
 # Scale to zero with Knative Serving
 
-> ⚠️ WARNING: This example uses the experimental KinD node image
-
 This example is just the default knative getting started guide with a modified KinD and a WASM container as `HelloWorld` example.
 
 ## Create KinD cluster
 ```bash
 # Set up KinD cluster with WebAssembly support
-kind create cluster --image ghcr.io/liquid-reply/kind-crun-wasm:experimental
+kind create cluster --image ghcr.io/liquid-reply/kind-crun-wasm:v1.23.4
 ```
 
 ## Install knative serving
@@ -15,11 +13,11 @@ To install serving we cant use the quickstart plugin since it does not work with
 
 ```bash
 # Install CRDs
-kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.1.0/serving-crds.yaml
+kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.2.0/serving-crds.yaml
 # Install serving
-kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.1.0/serving-core.yaml
+kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.2.0/serving-core.yaml
 # Installing kourier
-kubectl apply -f https://github.com/knative/net-kourier/releases/download/knative-v1.1.0/kourier.yaml
+kubectl apply -f https://github.com/knative/net-kourier/releases/download/knative-v1.2.0/kourier.yaml
 # Patch ingress class
 kubectl patch configmap/config-network \
   --namespace knative-serving \
