@@ -12,14 +12,13 @@ spec:
     metadata:
       labels:
         app: wasm-echo
+      annotations:
+        module.wasm.image/variant: compat-smart
     spec:
       containers:
       - name: wasm-echo
-        image: avengermojo/http_server:with-wasm-annotation
+        image: 0xe282b0/http-server:latest
         command: [ "/http_server.wasm" ]
-        env:
-        - name: run.oci.handler
-          value: wasm
         ports:
         - containerPort: 1234
           protocol: TCP
@@ -28,6 +27,7 @@ spec:
             port: 1234
           initialDelaySeconds: 3
           periodSeconds: 30
+      runtimeClassName: crun
 ---
 apiVersion: v1
 kind: Service
