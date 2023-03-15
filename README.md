@@ -1,3 +1,6 @@
+# This repository is deprecated in favor of [KWasm.sh](https://kwasm.sh)
+
+
 # kind-crun-wasm
 This repository shows how to run WASM on [KinD](https://github.com/kubernetes-sigs/kind/). It is build on the awesome work of https://github.com/second-state/wasmedge-containers-examples.
 
